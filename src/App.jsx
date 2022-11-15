@@ -1,5 +1,4 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
 import { Route, Routes } from "react-router-dom";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
@@ -12,11 +11,8 @@ function App() {
 
   return (
     <div className='App'>
+      <Dashboard />
       <Routes>
-        <Route
-          path='/'
-          element={<Dashboard />}
-        />
         <Route
           path='/login'
           element={<Login />}

@@ -3,6 +3,7 @@ import { Avatar, Flex, Icon, IconButton } from "@chakra-ui/react";
 import { FaBell } from "react-icons/fa";
 import { FiMenu } from "react-icons/fi";
 import Search from "./Search";
+import ProfileMenu from "./ProfileMenu";
 
 const Nav = (props) => {
   const { sidebar } = props;
@@ -34,13 +35,7 @@ const Nav = (props) => {
           as={FaBell}
           cursor='pointer'
         />
-        <Avatar
-          ml='4'
-          size='sm'
-          name='anubra266'
-          src='https://avatars.githubusercontent.com/u/30869823?v=4'
-          cursor='pointer'
-        />
+        <ProfileMenu />
       </Flex>
     </Flex>
   );

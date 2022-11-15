@@ -40,13 +40,13 @@ export default function Dashboard() {
         <Box
           as='main'
           p='4'>
-          {/* Add content here, remove div below  */}
           <Box
             borderWidth='4px'
             borderStyle='dashed'
             rounded='md'
-            h='96'
-          />
+            h='90vh'>
+            <p> Add content here, remove div below</p>
+          </Box>
         </Box>
       </Box>
     </Box>
