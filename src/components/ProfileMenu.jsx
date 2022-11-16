@@ -40,6 +40,7 @@ const ProfileMenu = () => {
       <MenuList>
         {data.map((link) => (
           <MenuItem
+            key={link.title}
             as={NavLink}
             to={link.path}>
             {link.title}
