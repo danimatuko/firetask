@@ -35,7 +35,7 @@ const Signup = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    signup(email, password, displayName);
+    signup(email, password, displayName, profileImg);
   };
 
   return (

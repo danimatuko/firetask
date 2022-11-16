@@ -5,7 +5,9 @@ const AlertMessage = (props) => {
   const { status, message } = props;
 
   return (
-    <Alert status={status}>
+    <Alert
+      status={status}
+      mb={8}>
       <AlertIcon />
       <AlertDescription>{message}</AlertDescription>
     </Alert>
