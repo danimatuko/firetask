@@ -31,14 +31,13 @@ const Signup = () => {
   const handleFileChange = (e) => {
     e.preventDefault();
     const selected = e.target.files[0];
-    console.log(selected);
-    console.log(selected.size < 1024 * 1024);
     setProfileImg(selected);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    signup(email, password, displayName, profileImg);
+    const res = await signup(email, password, displayName, profileImg);
+    console.log(res);
   };
 
   return (
@@ -115,7 +114,7 @@ const Signup = () => {
                 <Input
                   rounded='md'
                   type='file'
-                  // accept='image/*'
+                  accept='image/*'
                   onChange={handleFileChange}
                 />
               </FormControl>
