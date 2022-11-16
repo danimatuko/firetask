@@ -11,8 +11,11 @@ function App() {
 
   return (
     <div className='App'>
-      <Dashboard />
       <Routes>
+        <Route
+          path='/'
+          element={<Dashboard />}
+        />{" "}
         <Route
           path='/login'
           element={<Login />}

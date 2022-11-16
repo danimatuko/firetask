@@ -1,5 +1,5 @@
 import React from "react";
-import { Avatar, Flex, Icon, IconButton } from "@chakra-ui/react";
+import { Flex, Icon, IconButton } from "@chakra-ui/react";
 import { FaBell } from "react-icons/fa";
 import { FiMenu } from "react-icons/fi";
 import Search from "./Search";

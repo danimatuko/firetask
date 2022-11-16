@@ -1,28 +1,15 @@
-import { ChevronDownIcon } from "@chakra-ui/icons";
-import {
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
-  MenuItemOption,
-  MenuGroup,
-  MenuOptionGroup,
-  MenuDivider,
-  Button,
-  Avatar,
-  Link,
-} from "@chakra-ui/react";
+import { Menu, MenuButton, MenuList, MenuItem, Avatar } from "@chakra-ui/react";
 
 import React from "react";
 import { NavLink } from "react-router-dom";
 
 const data = [
   {
-    title: "login",
+    title: "Login",
     path: "/login",
   },
   {
-    title: "signup",
+    title: "Signup",
     path: "/signup",
   },
 ];
