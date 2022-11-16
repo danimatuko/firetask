@@ -20,17 +20,20 @@ import AlertMessage from "../components/AlertMessage";
 
 const Signup = () => {
   const [show, setShow] = useState(false);
-  const handleClick = () => setShow(!show);
   const [profileImg, setProfileImg] = useState(null);
   const [displayName, setDisplayName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { signup, error, isPending } = useSignup();
 
+  const handleClick = () => setShow(!show);
+
   const handleFileChange = (e) => {
     e.preventDefault();
     const selected = e.target.files[0];
     console.log(selected);
+    console.log(selected.size < 1024 * 1024);
+    setProfileImg(selected);
   };
 
   const handleSubmit = (e) => {
@@ -99,11 +102,11 @@ const Signup = () => {
                   </InputRightElement>
                 </InputGroup>
               </FormControl>
-              <FormControl id='name'>
+              <FormControl id='displayName'>
                 <FormLabel>Name</FormLabel>
                 <Input
                   rounded='md'
-                  type='name'
+                  type='displayName'
                   onChange={(e) => setDisplayName(e.target.value)}
                 />
               </FormControl>
@@ -112,6 +115,7 @@ const Signup = () => {
                 <Input
                   rounded='md'
                   type='file'
+                  // accept='image/*'
                   onChange={handleFileChange}
                 />
               </FormControl>
@@ -131,6 +135,9 @@ const Signup = () => {
                 </Link>
               </Stack>
               <Button
+                loadingText='Just a moment'
+                isLoading={isPending}
+                spinnerPlacement='end'
                 type='submit'
                 bg='brand.300'
                 color='white'
