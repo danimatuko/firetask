@@ -16,11 +16,11 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 // init services
-const db = firebase.firestore();
+const firestore = firebase.firestore();
 const auth = firebase.auth();
 const storage = firebase.storage();
 
 // timestamp
 const timestamp = firebase.firestore.Timestamp();
 
-export { db, auth, storage, timestamp };
+export { firestore, auth, storage, timestamp };
