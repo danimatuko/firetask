@@ -23,16 +23,16 @@ export const useSignup = () => {
       const uploudPath = `avatar/${res.user.uid}/${avatar.name}`;
 
       const profileImage = await storage.ref(uploudPath).put(avatar);
-      const imgURL = await profileImage.ref.getDownloadURL();
+      const photoURL = await profileImage.ref.getDownloadURL();
 
       // add display name to user
-      await res.user.updateProfile({ displayName, imgURL });
+      await res.user.updateProfile({ displayName, photoURL });
 
       // create a user document
       await firestore.collection("users").doc(res.user.uid).set({
         online: true,
         displayName,
-        imgURL,
+        photoURL,
       });
 
       // dispatch login action

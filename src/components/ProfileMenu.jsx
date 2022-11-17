@@ -2,6 +2,8 @@ import React from "react";
 import { Menu, MenuButton, MenuList, MenuItem, Avatar } from "@chakra-ui/react";
 import { NavLink } from "react-router-dom";
 import { useLogout } from "../hooks/useLogout";
+import { useAuthContext } from "../hooks/useAuthContext";
+import UserAvatar from "./UserAvatar";
 
 const data = [
   {
@@ -15,26 +17,25 @@ const data = [
 ];
 
 const ProfileMenu = () => {
+  const { user } = useAuthContext();
   const { logout } = useLogout();
+
   return (
     <Menu>
-      <MenuButton
-        as={Avatar}
-        ml='4'
-        size='sm'
-        name='anubra266'
-        src='https://avatars.githubusercontent.com/u/30869823?v=4'
-        cursor='pointer'></MenuButton>
+      <MenuButton>
+        <UserAvatar />
+      </MenuButton>
       <MenuList>
-        {data.map((link) => (
-          <MenuItem
-            key={link.title}
-            as={NavLink}
-            to={link.path}>
-            {link.title}
-          </MenuItem>
-        ))}
-        <MenuItem onClick={logout}>Logout</MenuItem>
+        {!user &&
+          data.map((link) => (
+            <MenuItem
+              key={link.title}
+              as={NavLink}
+              to={link.path}>
+              {link.title}
+            </MenuItem>
+          ))}
+        {user && <MenuItem onClick={logout}>Logout</MenuItem>}
       </MenuList>
     </Menu>
   );
