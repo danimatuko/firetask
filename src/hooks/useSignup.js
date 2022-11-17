@@ -8,7 +8,6 @@ export const useSignup = () => {
   const { dispatch } = useAuthContext();
 
   const signup = async (email, password, displayName, avatar) => {
-    console.log(avatar);
     setError(null);
     setIsPending(true);
 
@@ -21,7 +20,7 @@ export const useSignup = () => {
       }
 
       // uploud user profile image
-      const uploudPath = `avatar/${avatar.name}/${res.user.uid}`;
+      const uploudPath = `avatar/${res.user.uid}/${avatar.name}`;
 
       const profileImage = await storage.ref(uploudPath).put(avatar);
       const imgURL = await profileImage.ref.getDownloadURL();
@@ -30,8 +29,11 @@ export const useSignup = () => {
       await res.user.updateProfile({ displayName, imgURL });
 
       // create a user document
-
-      db.doc();
+      await firestore.collection("users").doc(res.user.uid).set({
+        online: true,
+        displayName,
+        imgURL,
+      });
 
       // dispatch login action
       dispatch({ type: "LOGIN", payload: res.user });
