@@ -15,29 +15,20 @@ import {
   Checkbox,
   Link,
 } from "@chakra-ui/react";
-import { useSignup } from "../hooks/useSignup";
 import AlertMessage from "../components/AlertMessage";
+import { useLogin } from "../hooks/useLogin";
 
 const Logout = () => {
-  const [show, setShow] = useState(false);
-  const [profileImg, setProfileImg] = useState(null);
-  const [displayName, setDisplayName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { signup, error, isPending } = useSignup();
+  const { login, error, isPending } = useLogin();
+  const [show, setShow] = useState(false);
 
   const handleClick = () => setShow(!show);
 
-  const handleFileChange = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    const selected = e.target.files[0];
-    setProfileImg(selected);
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const res = await signup(email, password, displayName, profileImg);
-    console.log(res);
+    login(email, password);
   };
 
   return (
@@ -101,23 +92,6 @@ const Logout = () => {
                   </InputRightElement>
                 </InputGroup>
               </FormControl>
-              <FormControl id='displayName'>
-                <FormLabel>Name</FormLabel>
-                <Input
-                  rounded='md'
-                  type='displayName'
-                  onChange={(e) => setDisplayName(e.target.value)}
-                />
-              </FormControl>
-              <FormControl id='profileImg'>
-                <FormLabel>Profile Image</FormLabel>
-                <Input
-                  rounded='md'
-                  type='file'
-                  accept='image/*'
-                  onChange={handleFileChange}
-                />
-              </FormControl>
             </VStack>
             <VStack w='100%'>
               <Stack
@@ -145,7 +119,7 @@ const Logout = () => {
                 }}
                 rounded='md'
                 w='100%'>
-                Sign Up
+                Login
               </Button>
             </VStack>
           </VStack>

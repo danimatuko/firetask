@@ -34,10 +34,9 @@ const Signup = () => {
     setProfileImg(selected);
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    const res = await signup(email, password, displayName, profileImg);
-    console.log(res);
+    signup(email, password, displayName, profileImg);
   };
 
   return (
