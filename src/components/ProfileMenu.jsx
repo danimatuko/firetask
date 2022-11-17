@@ -1,7 +1,7 @@
-import { Menu, MenuButton, MenuList, MenuItem, Avatar } from "@chakra-ui/react";
-
 import React from "react";
+import { Menu, MenuButton, MenuList, MenuItem, Avatar } from "@chakra-ui/react";
 import { NavLink } from "react-router-dom";
+import { useLogout } from "../hooks/useLogout";
 
 const data = [
   {
@@ -15,6 +15,7 @@ const data = [
 ];
 
 const ProfileMenu = () => {
+  const { logout } = useLogout();
   return (
     <Menu>
       <MenuButton
@@ -33,6 +34,7 @@ const ProfileMenu = () => {
             {link.title}
           </MenuItem>
         ))}
+        <MenuItem onClick={logout}>Logout</MenuItem>
       </MenuList>
     </Menu>
   );
