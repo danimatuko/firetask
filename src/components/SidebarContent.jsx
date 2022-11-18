@@ -24,7 +24,7 @@ const SidebarContent = (props) => {
       as='nav'
       pos='fixed'
       top='0'
-      left='0'
+      // left='0'
       zIndex='sticky'
       h='full'
       pb='10'

@@ -9,6 +9,7 @@ import {
 import React from "react";
 import SidebarContent from "../components/SidebarContent";
 import Nav from "../components/Nav";
+import OnlineUsers from "../components/OnlineUsers";
 
 export default function Dashboard() {
   const sidebar = useDisclosure();
@@ -19,7 +20,10 @@ export default function Dashboard() {
       bg='gray.50'
       _dark={{ bg: "gray.700" }}
       minH='100vh'>
-      <SidebarContent display={{ base: "none", md: "unset" }} />
+      <SidebarContent
+        display={{ base: "none", md: "unset" }}
+        left='0'
+      />
       <Drawer
         isOpen={sidebar.isOpen}
         onClose={sidebar.onClose}
@@ -33,12 +37,15 @@ export default function Dashboard() {
         </DrawerContent>
       </Drawer>
       <Box
-        ml={{ base: 0, md: 60 }}
+        // ml={{ base: 0, md: 60 }}
+        m='auto'
         transition='.3s ease'>
         <Nav sidebar={sidebar} />
 
         <Box
           as='main'
+          width={"70%"}
+          margin='auto'
           p='4'>
           <Box
             borderWidth='4px'
@@ -49,6 +56,7 @@ export default function Dashboard() {
           </Box>
         </Box>
       </Box>
+      <OnlineUsers />
     </Box>
   );
 }

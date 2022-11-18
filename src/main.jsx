@@ -25,7 +25,6 @@ const config = {
   useSystemColorMode: false,
 };
 
-
 const theme = extendTheme({ colors, config });
 
 ReactDOM.createRoot(document.getElementById("root")).render(
