@@ -1,42 +1,77 @@
-import React from "react";
-import {
-  Box,
-  Drawer,
-  DrawerContent,
-  DrawerOverlay,
-  useDisclosure,
-} from "@chakra-ui/react";
-<<<<<<< HEAD
-import SidebarContent from "./SidebarContent";
-=======
-import SidebarContent from "./LeftSidebar";
->>>>>>> rightSideBar
-import { rightSidebarData } from "../../data/rightSidebar";
+import { Box, Flex, Icon, Image, Text, useDisclosure } from "@chakra-ui/react";
 
-const OnlineUsers = () => {
-  const sidebar = useDisclosure();
+import React from "react";
+import { BsFillCircleFill } from "react-icons/bs";
+import { FaUsers } from "react-icons/fa";
+import { FiCircle } from "react-icons/fi";
+import { rightSidebarData } from "../../data/onlineUsers";
+import Logo from "../assets/react.svg";
+import { useCollection } from "../hooks/useCollection";
+import NavItem from "./NavItem";
+import UserAvatar from "./UserAvatar";
+
+const OnlineUsers = (props) => {
+  const integrations = useDisclosure();
+
+  const { documents: onlineUsers, error } = useCollection("users");
 
   return (
-    <>
-      <Drawer
-        isOpen={sidebar.isOpen}
-        onClose={sidebar.onClose}
-        placement='right'>
-        <DrawerOverlay />
-        <DrawerContent>
-          <SidebarContent
-            w='full'
-            borderRight='none'
-          />
-        </DrawerContent>
-      </Drawer>
-      <SidebarContent
-        display={{ base: "none", md: "unset" }}
-        right='0'
-        data={rightSidebarData}
-      />
-    </>
+    <Box
+      as='nav'
+      pos='fixed'
+      top='0'
+      right='0'
+      zIndex='sticky'
+      h='full'
+      pb='10'
+      overflowX='hidden'
+      overflowY='auto'
+      bg='white'
+      _dark={{ bg: "gray.800" }}
+      border
+      color='inherit'
+      borderLeftWidth='1px'
+      w='60'
+      {...props}>
+      <Flex
+        px='4'
+        py='5'
+        align='center'>
+        <Icon
+          as={FaUsers}
+          w={8}
+          h={8}
+          color={"gray.400"}
+        />
+        <Text
+          fontSize='2xl'
+          ml='2'
+          color='brand.500'
+          _dark={{ color: "white" }}
+          fontWeight='semibold'>
+          All Users
+        </Text>
+      </Flex>
+      <Flex
+        direction='column'
+        as='nav'
+        fontSize='sm'
+        color='gray.600'
+        aria-label='Main Navigation'>
+        {onlineUsers?.map((user) => (
+          <NavItem
+            key={user.id}
+            pl='12'>
+            <Icon
+              as={BsFillCircleFill}
+              color={user.online ? "green" : "red"}
+            />
+            <UserAvatar src={user.photoURL} />
+            <Text ml={1}>{user.displayName}</Text>
+          </NavItem>
+        ))}
+      </Flex>
+    </Box>
   );
 };
-
 export default OnlineUsers;

@@ -10,7 +10,7 @@ import React from "react";
 import LeftSidebar from "../components/LeftSidebar";
 import Nav from "../components/Nav";
 import MainContent from "../components/MainContent";
-import RightSidebar from "../components/RightSidebar";
+import OnlineUsers from "../components/OnlineUsers";
 
 export default function Dashboard() {
   const sidebar = useDisclosure();
@@ -43,14 +43,14 @@ export default function Dashboard() {
         <Nav sidebar={sidebar} />
         <MainContent />
       </Box>
-      <RightSidebar display={{ base: "none", md: "unset" }} />
+      <OnlineUsers display={{ base: "none", md: "unset" }} />
       <Drawer
         isOpen={sidebar.isOpen}
         onClose={sidebar.onClose}
         placement='left'>
         <DrawerOverlay />
         <DrawerContent>
-          <RightSidebar
+          <OnlineUsers
             w='full'
             borderRight='none'
           />

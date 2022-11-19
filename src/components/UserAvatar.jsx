@@ -1,15 +1,13 @@
-import { Avatar } from "@chakra-ui/react";
 import React from "react";
-import { useAuthContext } from "../hooks/useAuthContext";
+import { Avatar } from "@chakra-ui/react";
 
-const UserAvatar = () => {
-  const { user } = useAuthContext();
+const UserAvatar = (props) => {
   return (
     <Avatar
       ml='4'
       size='sm'
-      name='anubra266'
-      src={user.photoURL}
+      name='user image'
+      src={props.src}
       cursor='pointer'
     />
   );
