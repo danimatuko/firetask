@@ -6,7 +6,11 @@ import {
   DrawerOverlay,
   useDisclosure,
 } from "@chakra-ui/react";
+<<<<<<< HEAD
 import SidebarContent from "./SidebarContent";
+=======
+import SidebarContent from "./LeftSidebar";
+>>>>>>> rightSideBar
 import { rightSidebarData } from "../../data/rightSidebar";
 
 const OnlineUsers = () => {
