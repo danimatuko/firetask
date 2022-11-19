@@ -23,7 +23,7 @@ const ProfileMenu = () => {
   return (
     <Menu placement='bottom-end'>
       <MenuButton>
-        <UserAvatar src={user.photoURL} />
+        <UserAvatar src={user?.photoURL} />
       </MenuButton>
       <MenuList>
         {!user &&

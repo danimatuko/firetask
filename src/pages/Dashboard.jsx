@@ -21,41 +21,14 @@ export default function Dashboard() {
       bg='gray.50'
       _dark={{ bg: "gray.700" }}
       minH='100vh'>
-      <LeftSidebar display={{ base: "none", md: "unset" }} />
-      <Drawer
-        isOpen={sidebar.isOpen}
-        onClose={sidebar.onClose}
-        placement='left'>
-        <DrawerOverlay />
-        <DrawerContent>
-          <LeftSidebar
-            w='full'
-            borderRight='none'
-          />
-        </DrawerContent>
-      </Drawer>
       <Box
         // ml={{ base: 0, md: 60 }}
         // w='75%'
         // w={{ base: "full", md: "8xl" }}
         // margin={"auto"}
         transition='.3s ease'>
-        <Nav sidebar={sidebar} />
         <MainContent />
       </Box>
-      <OnlineUsers display={{ base: "none", md: "unset" }} />
-      <Drawer
-        isOpen={sidebar.isOpen}
-        onClose={sidebar.onClose}
-        placement='left'>
-        <DrawerOverlay />
-        <DrawerContent>
-          <OnlineUsers
-            w='full'
-            borderRight='none'
-          />
-        </DrawerContent>
-      </Drawer>
     </Box>
   );
 }
