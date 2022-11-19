@@ -1,24 +1,13 @@
-import {
-  Box,
-  Collapse,
-  Flex,
-  Icon,
-  Image,
-  Text,
-  useDisclosure,
-} from "@chakra-ui/react";
-import { FaClipboardCheck, FaRss } from "react-icons/fa";
-import { AiFillGift } from "react-icons/ai";
-import { BsGearFill } from "react-icons/bs";
-import { HiCode, HiCollection } from "react-icons/hi";
-import { MdHome, MdKeyboardArrowRight } from "react-icons/md";
+import { Box, Flex, Icon, Image, Text, useDisclosure } from "@chakra-ui/react";
+
 import React from "react";
+import { leftSidebarData } from "../../data/leftSidebar";
+import { rightSidebarData } from "../../data/rightSidebar";
 import Logo from "../assets/react.svg";
 import NavItem from "./NavItem";
 
 const RightSidebar = (props) => {
   const integrations = useDisclosure();
-
   return (
     <Box
       as='nav'
@@ -60,39 +49,12 @@ const RightSidebar = (props) => {
         fontSize='sm'
         color='gray.600'
         aria-label='Main Navigation'>
-        <NavItem icon={MdHome}>Home</NavItem>
-        <NavItem icon={FaRss}>Articles</NavItem>
-        <NavItem icon={HiCollection}>Collections</NavItem>
-        <NavItem icon={FaClipboardCheck}>Checklists</NavItem>
-        <NavItem
-          icon={HiCode}
-          onClick={integrations.onToggle}>
-          Integrations
-          <Icon
-            as={MdKeyboardArrowRight}
-            ml='auto'
-            transform={integrations.isOpen && "rotate(90deg)"}
-          />
-        </NavItem>
-        <Collapse in={integrations.isOpen}>
-          <NavItem
-            pl='12'
-            py='2'>
-            Shopify
+        {rightSidebarData?.map((props) => (
+          <NavItem key={props.title}>
+            <Icon as={props.icon} />
+            <Text ml={1}> {props.title}</Text>
           </NavItem>
-          <NavItem
-            pl='12'
-            py='2'>
-            Slack
-          </NavItem>
-          <NavItem
-            pl='12'
-            py='2'>
-            Zapier
-          </NavItem>
-        </Collapse>
-        <NavItem icon={AiFillGift}>Changelog</NavItem>
-        <NavItem icon={BsGearFill}>Settings</NavItem>
+        ))}
       </Flex>
     </Box>
   );

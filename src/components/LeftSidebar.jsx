@@ -1,12 +1,12 @@
 import { Box, Flex, Icon, Image, Text, useDisclosure } from "@chakra-ui/react";
 
 import React from "react";
+import { leftSidebarData } from "../../data/leftSidebar";
 import Logo from "../assets/react.svg";
 import NavItem from "./NavItem";
 
 const LeftSidebar = (props) => {
   const integrations = useDisclosure();
-
   return (
     <Box
       as='nav'
@@ -48,10 +48,10 @@ const LeftSidebar = (props) => {
         fontSize='sm'
         color='gray.600'
         aria-label='Main Navigation'>
-        {props.data?.map((props) => (
+        {leftSidebarData?.map((props) => (
           <NavItem key={props.title}>
             <Icon as={props.icon} />
-            {props.title}
+            <Text ml={1}>{props.title}</Text>
           </NavItem>
         ))}
       </Flex>

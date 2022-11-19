@@ -21,12 +21,6 @@ const ProfileMenu = () => {
   const { logout } = useLogout();
 
   return (
-<<<<<<< HEAD
-    <Menu>
-      <MenuButton>
-        <UserAvatar />
-      </MenuButton>
-=======
     <Menu placement='bottom-end'>
       <MenuButton
         as={Avatar}
@@ -35,7 +29,6 @@ const ProfileMenu = () => {
         name='anubra266'
         src='https://avatars.githubusercontent.com/u/30869823?v=4'
         cursor='pointer'></MenuButton>
->>>>>>> rightSideBar
       <MenuList>
         {!user &&
           data.map((link) => (
