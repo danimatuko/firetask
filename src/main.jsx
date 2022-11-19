@@ -4,15 +4,19 @@ import App from "./App";
 import "./index.css";
 import { AuthContextProvider } from "./context/AuthContext";
 import { BrowserRouter } from "react-router-dom";
-import { ChakraProvider, extendTheme } from "@chakra-ui/react";
+import { ChakraProvider, extendTheme, Textarea } from "@chakra-ui/react";
 
 const theme = extendTheme({
   initialColorMode: "light",
   useSystemColorMode: false,
+
   styles: {
     global: {
       body: {
         bg: "#f4f4f4",
+      },
+      "input, textarea, select": {
+        color: "gray.500",
       },
     },
   },
@@ -35,7 +39,9 @@ const theme = extendTheme({
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <ChakraProvider theme={theme}>
+    <ChakraProvider
+      theme={theme}
+      resetCSS>
       <AuthContextProvider>
         <BrowserRouter>
           <App />

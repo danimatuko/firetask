@@ -11,7 +11,15 @@ import {
   Textarea,
   Heading,
   Button,
+  Select,
 } from "@chakra-ui/react";
+
+const categories = [
+  { value: "development", label: "Development" },
+  { value: "design", label: "Design" },
+  { value: "sales", label: "Sales" },
+  { value: "marketing", label: "Marketing" },
+];
 
 export default function Create() {
   // form field values
@@ -24,7 +32,7 @@ export default function Create() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log(name, details, dueDate);
+    console.log(name, details, dueDate, category);
   };
 
   return (
@@ -34,6 +42,7 @@ export default function Create() {
       <Heading mb={8}>Create a new Project</Heading>
       <VStack
         as='form'
+        noValidate
         onSubmit={handleSubmit}>
         <FormControl>
           <FormLabel>Project name:</FormLabel>
@@ -62,7 +71,17 @@ export default function Create() {
         </FormControl>
         <FormControl>
           <FormLabel>Project category:</FormLabel>
-          {/* select here later */}
+          <Select
+            placeholder='Select option'
+            onChange={(e) => setCategory(e.target.value)}>
+            {categories.map((category) => (
+              <option
+                key={category.value}
+                value={category.value}>
+                {category.label}
+              </option>
+            ))}
+          </Select>
         </FormControl>
         <FormControl>
           <FormLabel>Assign to:</FormLabel>
