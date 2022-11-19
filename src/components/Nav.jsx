@@ -13,13 +13,12 @@ const Nav = (props) => {
       as='header'
       align='center'
       justify='space-between'
-      margin={"auto"}
-      px='72'
+      // margin={"auto"}
+      px='4'
+      ml='60'
       bg='white'
       _dark={{ bg: "gray.800" }}
-      borderBottomWidth='1px'
-      color='inherit'
-      h='14'>
+      h='16'>
       <IconButton
         aria-label='Menu'
         display={{ base: "inline-flex", md: "none" }}

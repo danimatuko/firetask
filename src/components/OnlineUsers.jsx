@@ -19,18 +19,14 @@ const OnlineUsers = (props) => {
     <Box
       as='nav'
       pos='fixed'
-      top='0'
+      top='16'
       right='0'
-      zIndex='sticky'
       h='full'
       pb='10'
       overflowX='hidden'
       overflowY='auto'
       bg='white'
       _dark={{ bg: "gray.800" }}
-      border
-      color='inherit'
-      borderLeftWidth='1px'
       w='60'
       {...props}>
       <Flex

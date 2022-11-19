@@ -1,6 +1,7 @@
 import { Box, Flex, Icon, Image, Text, useDisclosure } from "@chakra-ui/react";
 
 import React from "react";
+import { AiFillFire } from "react-icons/ai";
 import { leftSidebarData } from "../../data/leftSidebar";
 import Logo from "../assets/react.svg";
 import NavItem from "./NavItem";
@@ -18,25 +19,23 @@ const LeftSidebar = (props) => {
       pb='10'
       overflowX='hidden'
       overflowY='auto'
-      bg='white'
+      bg='brand.700'
       _dark={{ bg: "gray.800" }}
-      border
-      color='inherit'
-      borderRightWidth='1px'
       w='60'
       {...props}>
       <Flex
         px='4'
         py='5'
         align='center'>
-        <Image
-          src={Logo}
-          alt='Dan Abramov'
+        <Icon
+          as={AiFillFire}
+          fontSize='3xl'
+          color={"orange.300"}
         />
         <Text
           fontSize='2xl'
-          ml='2'
-          color='brand.500'
+          ml='1'
+          color='whiteAlpha.800'
           _dark={{ color: "white" }}
           fontWeight='semibold'>
           Firetask
@@ -46,7 +45,7 @@ const LeftSidebar = (props) => {
         direction='column'
         as='nav'
         fontSize='sm'
-        color='gray.600'
+        color='whiteAlpha.700'
         aria-label='Main Navigation'>
         {leftSidebarData?.map((props) => (
           <NavItem key={props.title}>

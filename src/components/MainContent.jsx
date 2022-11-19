@@ -4,13 +4,12 @@ import React from "react";
 const mainContent = () => {
   return (
     <Box
+      bg='light'
       as='main'
       p='4'
       w={{ base: "full", md: "8xl" }}
-      margin={"auto"}>
+      margin='auto'>
       <Box
-        borderWidth='4px'
-        borderStyle='dashed'
         rounded='md'
         h='90vh'>
         <p> Add content here, remove div below</p>
