@@ -10,6 +10,7 @@ import React from "react";
 import SidebarContent from "../components/SidebarContent";
 import Nav from "../components/Nav";
 import OnlineUsers from "../components/OnlineUsers";
+import { leftSidebarData } from "../../data/leftSidebar";
 
 export default function Dashboard() {
   const sidebar = useDisclosure();
@@ -23,6 +24,7 @@ export default function Dashboard() {
       <SidebarContent
         display={{ base: "none", md: "unset" }}
         left='0'
+        data={leftSidebarData}
       />
       <Drawer
         isOpen={sidebar.isOpen}

@@ -7,6 +7,7 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import SidebarContent from "./SidebarContent";
+import { rightSidebarData } from "../../data/rightSidebar";
 
 const OnlineUsers = () => {
   const sidebar = useDisclosure();
@@ -28,6 +29,7 @@ const OnlineUsers = () => {
       <SidebarContent
         display={{ base: "none", md: "unset" }}
         right='0'
+        data={rightSidebarData}
       />
     </>
   );
