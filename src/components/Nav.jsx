@@ -13,7 +13,8 @@ const Nav = (props) => {
       as='header'
       align='center'
       justify='space-between'
-      w='full'
+      w={{ base: "full", md: "8xl" }}
+      margin={"auto"}
       px='4'
       bg='white'
       _dark={{ bg: "gray.800" }}

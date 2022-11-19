@@ -17,7 +17,7 @@ const data = [
 const ProfileMenu = () => {
   const { logout } = useLogout();
   return (
-    <Menu>
+    <Menu placement='bottom-end'>
       <MenuButton
         as={Avatar}
         ml='4'

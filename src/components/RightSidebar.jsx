@@ -16,7 +16,7 @@ import React from "react";
 import Logo from "../assets/react.svg";
 import NavItem from "./NavItem";
 
-const SidebarContent = (props) => {
+const RightSidebar = (props) => {
   const integrations = useDisclosure();
 
   return (
@@ -24,7 +24,7 @@ const SidebarContent = (props) => {
       as='nav'
       pos='fixed'
       top='0'
-      left='0'
+      right='0'
       zIndex='sticky'
       h='full'
       pb='10'
@@ -97,4 +97,4 @@ const SidebarContent = (props) => {
     </Box>
   );
 };
-export default SidebarContent;
+export default RightSidebar;
