@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 import {
   FormControl,
   FormLabel,
@@ -11,31 +11,34 @@ import {
   Textarea,
   Heading,
   Button,
-} from "@chakra-ui/react";
-import { useCollection } from "../hooks/useCollection";
-import Select from "react-select";
-import { useAuthContext } from "../hooks/useAuthContext";
-import { timestamp } from "../firebase/config";
+} from '@chakra-ui/react';
+import { useCollection } from '../hooks/useCollection';
+import Select from 'react-select';
+import { useAuthContext } from '../hooks/useAuthContext';
+import { timestamp } from '../firebase/config';
+import { useFirestore } from '../hooks/useFirestore';
 
 const categories = [
-  { value: "development", label: "Development" },
-  { value: "design", label: "Design" },
-  { value: "sales", label: "Sales" },
-  { value: "marketing", label: "Marketing" },
+  { value: 'development', label: 'Development' },
+  { value: 'design', label: 'Design' },
+  { value: 'sales', label: 'Sales' },
+  { value: 'marketing', label: 'Marketing' },
 ];
 
 export default function Create() {
   // form field values
-  const [name, setName] = useState("");
-  const [details, setDetails] = useState("");
-  const [dueDate, setDueDate] = useState("");
-  const [category, setCategory] = useState("");
+  const [name, setName] = useState('');
+  const [details, setDetails] = useState('');
+  const [dueDate, setDueDate] = useState('');
+  const [category, setCategory] = useState('');
   const [assignedUsers, setAssignedUsers] = useState([]);
   const [users, setUsers] = useState([]);
 
   const { user } = useAuthContext();
 
-  const { documents } = useCollection("users");
+  const { documents } = useCollection('users');
+  const { addDocument } = useFirestore('projects');
+
   // map the  fetched users to use them in the select input
   useEffect(() => {
     const options = documents?.map((user) => {
@@ -75,7 +78,7 @@ export default function Create() {
       assignedUsersList,
     };
 
-    console.log(project);
+    addDocument(project);
   };
 
   return (
