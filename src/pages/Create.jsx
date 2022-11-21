@@ -14,16 +14,8 @@ import {
 } from "@chakra-ui/react";
 import { useCollection } from "../hooks/useCollection";
 import Select from "react-select";
-import {
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
-  MenuItemOption,
-  MenuGroup,
-  MenuOptionGroup,
-  MenuDivider,
-} from "@chakra-ui/react";
+import { useAuthContext } from "../hooks/useAuthContext";
+import { timestamp } from "../firebase/config";
 
 const categories = [
   { value: "development", label: "Development" },
@@ -41,6 +33,8 @@ export default function Create() {
   const [assignedUsers, setAssignedUsers] = useState([]);
   const [users, setUsers] = useState([]);
 
+  const { user } = useAuthContext();
+
   const { documents } = useCollection("users");
   // map the  fetched users to use them in the select input
   useEffect(() => {
@@ -50,14 +44,38 @@ export default function Create() {
         label: user.displayName,
       };
     });
-    console.log(documents);
     setUsers(options);
   }, [documents]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log(name, details, dueDate, category, assignedUsers);
+    // prepare project object to store in firestore
+    const createdBy = {
+      id: user.uid,
+      displayName: user.displayName,
+      photoURL: user.photoURL,
+    };
+
+    const assignedUsersList = assignedUsers.map((user) => {
+      return {
+        id: user.value.id,
+        displayName: user.value.displayName,
+        photoURL: user.value.photoURL,
+      };
+    });
+
+    const project = {
+      name,
+      details,
+      dueDate: timestamp.fromDate(new Date()),
+      category: category.value,
+      commentes: [],
+      createdBy,
+      assignedUsersList,
+    };
+
+    console.log(project);
   };
 
   return (
