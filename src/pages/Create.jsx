@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   FormControl,
   FormLabel,
@@ -11,7 +11,18 @@ import {
   Textarea,
   Heading,
   Button,
-  Select,
+} from "@chakra-ui/react";
+import { useCollection } from "../hooks/useCollection";
+import Select from "react-select";
+import {
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  MenuItemOption,
+  MenuGroup,
+  MenuOptionGroup,
+  MenuDivider,
 } from "@chakra-ui/react";
 
 const categories = [
@@ -28,11 +39,25 @@ export default function Create() {
   const [dueDate, setDueDate] = useState("");
   const [category, setCategory] = useState("");
   const [assignedUsers, setAssignedUsers] = useState([]);
+  const [users, setUsers] = useState([]);
+
+  const { documents } = useCollection("users");
+  // map the  fetched users to use them in the select input
+  useEffect(() => {
+    const options = documents?.map((user) => {
+      return {
+        value: user,
+        label: user.displayName,
+      };
+    });
+    console.log(documents);
+    setUsers(options);
+  }, [documents]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log(name, details, dueDate, category);
+    console.log(name, details, dueDate, category, assignedUsers);
   };
 
   return (
@@ -73,19 +98,18 @@ export default function Create() {
           <FormLabel>Project category:</FormLabel>
           <Select
             placeholder='Select option'
-            onChange={(e) => setCategory(e.target.value)}>
-            {categories.map((category) => (
-              <option
-                key={category.value}
-                value={category.value}>
-                {category.label}
-              </option>
-            ))}
-          </Select>
+            onChange={(option) => setCategory(option)}
+            options={categories}
+          />
         </FormControl>
         <FormControl>
           <FormLabel>Assign to:</FormLabel>
-          {/* select here later */}
+          <Select
+            isMulti
+            onChange={(option) => setAssignedUsers(option)}
+            value={assignedUsers}
+            options={users}
+          />
         </FormControl>
 
         <Button
