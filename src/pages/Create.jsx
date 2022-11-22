@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import {
   FormControl,
   FormLabel,
@@ -17,6 +17,8 @@ import Select from 'react-select';
 import { useAuthContext } from '../hooks/useAuthContext';
 import { timestamp } from '../firebase/config';
 import { useFirestore } from '../hooks/useFirestore';
+import { FirestoreContext } from '../context/FireStoreContext';
+import { useNavigate } from 'react-router-dom';
 
 const categories = [
   { value: 'development', label: 'Development' },
@@ -34,10 +36,11 @@ export default function Create() {
   const [assignedUsers, setAssignedUsers] = useState([]);
   const [users, setUsers] = useState([]);
 
+  const navigate = useNavigate();
   const { user } = useAuthContext();
-
+  const { isPending, error, success } = useContext(FirestoreContext);
   const { documents } = useCollection('users');
-  const { addDocument } = useFirestore('projects');
+  const { addDocument, reset } = useFirestore('projects');
 
   // map the  fetched users to use them in the select input
   useEffect(() => {
@@ -49,6 +52,12 @@ export default function Create() {
     });
     setUsers(options);
   }, [documents]);
+
+  // refirect on successfull form submit
+  useEffect(() => {
+    reset();
+    success && navigate('/');
+  }, [success]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -72,7 +81,7 @@ export default function Create() {
       name,
       details,
       dueDate: timestamp.fromDate(new Date()),
-      category: category.value,
+      category: category,
       commentes: [],
       createdBy,
       assignedUsersList,
@@ -135,7 +144,10 @@ export default function Create() {
 
         <Button
           type='submit'
-          colorScheme='brand'>
+          colorScheme='brand'
+          loadingText='Creating project'
+          isLoading={isPending}
+          spinnerPlacement='end'>
           Add Project
         </Button>
       </VStack>

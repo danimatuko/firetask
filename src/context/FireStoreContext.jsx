@@ -7,7 +7,7 @@ let initialState = {
   document: null,
   isPending: false,
   error: null,
-  success: null,
+  success: false,
 };
 
 export const firestoreReducer = (state = initialState, action) => {
@@ -30,6 +30,9 @@ export const firestoreReducer = (state = initialState, action) => {
         success: false,
         error: action.payload,
       };
+
+    case 'RESET':
+      return initialState;
     default:
       return state;
   }
