@@ -11,6 +11,8 @@ import {
   Textarea,
   Heading,
   Button,
+  Alert,
+  AlertIcon,
 } from '@chakra-ui/react';
 import { useCollection } from '../hooks/useCollection';
 import Select from 'react-select';
@@ -95,6 +97,12 @@ export default function Create() {
       className='create-form'
       py={16}>
       <Heading mb={8}>Create a new Project</Heading>
+      {!isPending && error && (
+        <Alert status='error'>
+          <AlertIcon />
+          {error}
+        </Alert>
+      )}
       <VStack
         as='form'
         noValidate
