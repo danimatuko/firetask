@@ -1,5 +1,13 @@
 import React from 'react';
-import { Box, Flex, Image, Link, chakra } from '@chakra-ui/react';
+import {
+  Box,
+  Flex,
+  Image,
+  Link,
+  chakra,
+  AvatarGroup,
+  Avatar,
+} from '@chakra-ui/react';
 import { timestamp } from '../firebase/config';
 
 const ProjectCard = ({ project }) => {
@@ -18,7 +26,7 @@ const ProjectCard = ({ project }) => {
       bg='#edf3f8'
       _dark={{ bg: '#3e3e3e' }}
       w='full'
-      h='56'
+      h='52'
       alignItems='center'
       justifyContent='center'>
       <Box
@@ -55,8 +63,8 @@ const ProjectCard = ({ project }) => {
 
         <Box mt={2}>
           <Link
-            fontSize='2xl'
-            noOfLines={2}
+            fontSize='xl'
+            noOfLines={1}
             color='gray.700'
             _dark={{ color: 'white' }}
             fontWeight='700'
@@ -89,25 +97,16 @@ const ProjectCard = ({ project }) => {
             Read more
           </Link>
 
-          <Flex alignItems='center'>
-            <Image
-              mx={4}
-              w={10}
-              h={10}
-              rounded='full'
-              fit='cover'
-              display={{ base: 'none', sm: 'block' }}
-              src={assignedUsersList[0].photoURL}
-              alt='avatar'
-            />
-            <Link
-              color='gray.700'
-              _dark={{ color: 'gray.200' }}
-              fontWeight='700'
-              cursor='pointer'>
-              {assignedUsersList[0]?.displayName}
-            </Link>
-          </Flex>
+          <AvatarGroup
+            size='md'
+            max={2}>
+            {assignedUsersList.map((user) => (
+              <Avatar
+                name={user.displayName}
+                src={user.photoURL}
+              />
+            ))}
+          </AvatarGroup>
         </Flex>
       </Box>
     </Flex>
