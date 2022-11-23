@@ -1,7 +1,8 @@
-import React from "react";
+import { Heading } from '@chakra-ui/react';
+import React from 'react';
 
 const Project = () => {
-  return <div>Project</div>;
+  return <Heading textAlign={'center'}>Project</Heading>;
 };
 
 export default Project;

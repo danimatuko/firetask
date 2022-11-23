@@ -7,11 +7,14 @@ import {
   Avatar,
   Text,
   Heading,
+  Link,
 } from '@chakra-ui/react';
-import { Link } from 'react-router-dom';
+
+import { Link as ReactLink } from 'react-router-dom';
 
 const ProjectCard = ({ project }) => {
   const {
+    id,
     name,
     details,
     dueDate,
@@ -62,6 +65,8 @@ const ProjectCard = ({ project }) => {
 
         <Box mt={2}>
           <Link
+            as={ReactLink}
+            to={`projects/${id}`}
             fontSize='xl'
             color='gray.700'
             _dark={{ color: 'white' }}
@@ -93,6 +98,8 @@ const ProjectCard = ({ project }) => {
           alignItems='center'
           mt={4}>
           <Link
+            as={ReactLink}
+            to={`projects/${id}`}
             color='brand.600'
             _dark={{ color: 'brand.400' }}
             _hover={{ textDecor: 'underline' }}>
