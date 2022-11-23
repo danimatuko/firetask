@@ -13,6 +13,7 @@ import MainContent from '../components/MainContent';
 import OnlineUsers from '../components/OnlineUsers';
 import { FirestoreContext } from '../context/FireStoreContext';
 import CustomToast from '../components/CustomToast';
+import ProjectList from '../components/ProjectList';
 
 export default function Dashboard() {
   const sidebar = useDisclosure();
@@ -31,7 +32,18 @@ export default function Dashboard() {
         // w={{ base: "full", md: "8xl" }}
         // margin={"auto"}
         transition='.3s ease'>
-        <MainContent />
+        <Box
+          bg='light'
+          as='main'
+          p='4'
+          w={{ base: 'full', md: '8xl' }}
+          margin='auto'>
+          <Box
+            rounded='md'
+            h='90vh'>
+            <MainContent />
+          </Box>
+        </Box>
       </Box>
     </Box>
   );

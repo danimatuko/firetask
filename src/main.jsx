@@ -15,6 +15,7 @@ const theme = extendTheme({
     global: {
       body: {
         bg: '#f4f4f4',
+        overflow: 'hidden',
       },
       'input, textarea, select': {
         color: 'gray.500',
