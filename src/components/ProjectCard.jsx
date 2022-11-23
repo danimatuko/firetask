@@ -2,13 +2,13 @@ import React from 'react';
 import {
   Box,
   Flex,
-  Image,
-  Link,
   chakra,
   AvatarGroup,
   Avatar,
+  Text,
+  Heading,
 } from '@chakra-ui/react';
-import { timestamp } from '../firebase/config';
+import { Link } from 'react-router-dom';
 
 const ProjectCard = ({ project }) => {
   const {
@@ -20,7 +20,6 @@ const ProjectCard = ({ project }) => {
     createdBy,
     assignedUsersList,
   } = project;
-
   return (
     <Flex
       bg='#edf3f8'
@@ -64,7 +63,6 @@ const ProjectCard = ({ project }) => {
         <Box mt={2}>
           <Link
             fontSize='xl'
-            noOfLines={1}
             color='gray.700'
             _dark={{ color: 'white' }}
             fontWeight='700'
@@ -75,15 +73,19 @@ const ProjectCard = ({ project }) => {
               },
               textDecor: 'underline',
             }}>
-            {name}
+            <Heading
+              noOfLines={1}
+              size='md'>
+              {name}
+            </Heading>
           </Link>
-          <chakra.p
+          <Text
             noOfLines={1}
             mt={2}
             color='gray.600'
             _dark={{ color: 'gray.300' }}>
             {details}
-          </chakra.p>
+          </Text>
         </Box>
 
         <Flex
@@ -102,6 +104,7 @@ const ProjectCard = ({ project }) => {
             max={2}>
             {assignedUsersList.map((user) => (
               <Avatar
+                key={user.id}
                 name={user.displayName}
                 src={user.photoURL}
               />
