@@ -1,12 +1,24 @@
 import React from 'react';
 import { Box, Flex, Image, Link, chakra } from '@chakra-ui/react';
+import { timestamp } from '../firebase/config';
 
-export default function ProjectCard() {
+const ProjectCard = ({ project }) => {
+  const {
+    name,
+    details,
+    dueDate,
+    category,
+    commentes,
+    createdBy,
+    assignedUsersList,
+  } = project;
+
   return (
     <Flex
       bg='#edf3f8'
       _dark={{ bg: '#3e3e3e' }}
       w='full'
+      h='56'
       alignItems='center'
       justifyContent='center'>
       <Box
@@ -16,8 +28,9 @@ export default function ProjectCard() {
         rounded='lg'
         shadow='lg'
         bg='white'
-        _dark={{ bg: 'gray.800' }}
-        maxW='2xl'>
+        w={'full'}
+        h='full'
+        _dark={{ bg: 'gray.800' }}>
         <Flex
           justifyContent='space-between'
           alignItems='center'>
@@ -25,7 +38,7 @@ export default function ProjectCard() {
             fontSize='sm'
             color='gray.600'
             _dark={{ color: 'gray.400' }}>
-            Mar 10, 2019
+            Due by {dueDate.toDate().toDateString()}
           </chakra.span>
           <Link
             px={3}
@@ -36,7 +49,7 @@ export default function ProjectCard() {
             fontWeight='700'
             rounded='md'
             _hover={{ bg: 'gray.500' }}>
-            Design
+            {category.label}
           </Link>
         </Flex>
 
@@ -54,17 +67,14 @@ export default function ProjectCard() {
               },
               textDecor: 'underline',
             }}>
-            Accessibility tools for designers and developers
+            {name}
           </Link>
           <chakra.p
-            noOfLines={3}
+            noOfLines={1}
             mt={2}
             color='gray.600'
             _dark={{ color: 'gray.300' }}>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempora
-            expedita dicta totam aspernatur doloremque. Excepturi iste iusto eos
-            enim reprehenderit nisi, accusamus delectus nihil quis facere in
-            modi ratione libero!
+            {details}
           </chakra.p>
         </Box>
 
@@ -87,7 +97,7 @@ export default function ProjectCard() {
               rounded='full'
               fit='cover'
               display={{ base: 'none', sm: 'block' }}
-              src='https://images.unsplash.com/photo-1502980426475-b83966705988?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=40&q=80'
+              src={assignedUsersList[0].photoURL}
               alt='avatar'
             />
             <Link
@@ -95,11 +105,12 @@ export default function ProjectCard() {
               _dark={{ color: 'gray.200' }}
               fontWeight='700'
               cursor='pointer'>
-              Khatab wedaa
+              {assignedUsersList[0]?.displayName}
             </Link>
           </Flex>
         </Flex>
       </Box>
     </Flex>
   );
-}
+};
+export default ProjectCard;

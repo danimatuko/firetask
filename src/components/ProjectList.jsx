@@ -5,7 +5,6 @@ import ProjectCard from './ProjectCard';
 
 const ProjectList = () => {
   const { documents: projects, error, isPending } = useCollection('projects');
-  console.log(projects);
   if (isPending) return <p>Waiting</p>;
 
   return (
@@ -14,11 +13,14 @@ const ProjectList = () => {
       <Grid
         templateColumns='repeat(3, 1fr)'
         gap={6}>
-        {projects?.map((project) => (
-          <GridItem key={project.id}>
-            <ProjectCard />
-          </GridItem>
-        ))}
+        {!isPending &&
+          projects?.map((project) => (
+            <GridItem
+              key={project.id}
+              w='100%'>
+              <ProjectCard project={project} />
+            </GridItem>
+          ))}
       </Grid>
     </Container>
   );
