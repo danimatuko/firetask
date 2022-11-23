@@ -1,19 +1,19 @@
-import { Box, Flex, Icon, Image, Text, useDisclosure } from "@chakra-ui/react";
+import { Box, Flex, Icon, Image, Text, useDisclosure } from '@chakra-ui/react';
 
-import React from "react";
-import { BsFillCircleFill } from "react-icons/bs";
-import { FaUsers } from "react-icons/fa";
-import { FiCircle } from "react-icons/fi";
-import { rightSidebarData } from "../../data/onlineUsers";
-import Logo from "../assets/react.svg";
-import { useCollection } from "../hooks/useCollection";
-import NavItem from "./NavItem";
-import UserAvatar from "./UserAvatar";
+import React from 'react';
+import { BsFillCircleFill } from 'react-icons/bs';
+import { FaUsers } from 'react-icons/fa';
+import { FiCircle } from 'react-icons/fi';
+import { rightSidebarData } from '../../data/onlineUsers';
+import Logo from '../assets/react.svg';
+import { useCollection } from '../hooks/useCollection';
+import NavItem from './NavItem';
+import UserAvatar from './UserAvatar';
 
 const OnlineUsers = (props) => {
   const integrations = useDisclosure();
 
-  const { documents: onlineUsers, error } = useCollection("users");
+  const { documents: onlineUsers, error } = useCollection('users');
 
   return (
     <Box
@@ -26,7 +26,7 @@ const OnlineUsers = (props) => {
       overflowX='hidden'
       overflowY='auto'
       bg='white'
-      _dark={{ bg: "gray.800" }}
+      _dark={{ bg: 'gray.800' }}
       w='60'
       {...props}>
       <Flex
@@ -37,13 +37,13 @@ const OnlineUsers = (props) => {
           as={FaUsers}
           w={8}
           h={8}
-          color={"gray.400"}
+          color={'gray.400'}
         />
         <Text
           fontSize='2xl'
           ml='2'
           color='brand.500'
-          _dark={{ color: "white" }}
+          _dark={{ color: 'white' }}
           fontWeight='semibold'>
           All Users
         </Text>
@@ -60,7 +60,7 @@ const OnlineUsers = (props) => {
             pl='12'>
             <Icon
               as={BsFillCircleFill}
-              color={user.online ? "green" : "red"}
+              color={user.online ? 'green' : 'red'}
             />
             <UserAvatar src={user.photoURL} />
             <Text ml={1}>{user.displayName}</Text>
