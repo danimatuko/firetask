@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+import { json } from 'react-router-dom';
 import { FirestoreContext } from '../context/FireStoreContext';
 import { firestore, timestamp } from '../firebase/config';
 
@@ -8,7 +9,6 @@ export const useFirestore = (collection) => {
   // collection ref
   const ref = firestore.collection(collection);
 
-  // add a document
   const addDocument = async (doc) => {
     dispatch({ type: 'IS_PENDING' });
 
@@ -20,11 +20,28 @@ export const useFirestore = (collection) => {
         payload: addedDocument,
       });
     } catch (err) {
+      console.log(err);
       dispatch({ type: 'ERROR', payload: err.message });
     }
   };
 
-  // delete a document
+  const updateDocument = async (id, data) => {
+    dispatch({ type: 'IS_PENDING' });
+    console.log(JSON.stringify(data));
+    try {
+      const updatedDocument = await ref.doc(id).update(data);
+      dispatch({
+        type: 'UPDATE_DOCUMENT',
+        payload: updatedDocument,
+      });
+
+      return updateDocument;
+    } catch (err) {
+      console.log(err);
+      dispatch({ type: 'ERROR', payload: err.message });
+    }
+  };
+
   const deleteDocument = async (id) => {
     dispatch({ type: 'IS_PENDING' });
 
@@ -32,11 +49,12 @@ export const useFirestore = (collection) => {
       await ref.doc(id).delete();
       dispatch({ type: 'DELETED_DOCUMENT' });
     } catch (err) {
+      console.log(err);
       dispatch({ type: 'ERROR', payload: 'could not delete' });
     }
   };
 
   const reset = () => setTimeout(() => dispatch({ type: 'RESET' }), 3000);
 
-  return { addDocument, deleteDocument, reset, state };
+  return { addDocument, deleteDocument, updateDocument, reset, state };
 };

@@ -21,9 +21,8 @@ import CommentForm from '../components/CommentForm';
 import useDocumnet from '../hooks/useDocumnet';
 
 const Project = () => {
-  let { id } = useParams();
-  const { document, error, isPending } = useDocumnet('projects', id);
-
+  const { id } = useParams();
+  const { document: project, error, isPending } = useDocumnet('projects', id);
   const [status, setStatus] = useState();
 
   const statusOptions = [
@@ -54,15 +53,18 @@ const Project = () => {
             bg='whiteAlpha.700'
             mb={16}>
             <CardHeader>
-              <Heading size='lg'> {document?.name}</Heading>
+              <Heading size='lg'> {project?.name}</Heading>
             </CardHeader>
 
             <CardBody>
-              <Text>{document?.details}</Text>
+              <Text>{project?.details}</Text>
             </CardBody>
           </Card>
           <Heading mb={4}>Comments</Heading>
-          <CommentForm />
+          <CommentForm
+            projectId={id}
+            project={project}
+          />
         </GridItem>
         <GridItem>
           <Card bg='whiteAlpha.600'>
@@ -90,7 +92,7 @@ const Project = () => {
                 <Heading
                   size={'sm'}
                   mb={2}></Heading>
-                {document?.dueDate.toDate().toDateString()}
+                {project?.dueDate.toDate().toDateString()}
               </Box>
               <Box mb={7}>
                 <Heading
@@ -101,7 +103,7 @@ const Project = () => {
                 <AvatarGroup
                   size='md'
                   max={2}>
-                  {document?.assignedUsersList.map((user) => (
+                  {project?.assignedUsersList.map((user) => (
                     <Avatar
                       key={user.id}
                       name={user.displayName}
@@ -116,7 +118,7 @@ const Project = () => {
                   mb={2}>
                   Category
                 </Heading>
-                <Tag colorScheme={'messenger'}>{document?.category.label}</Tag>
+                <Tag colorScheme={'messenger'}>{project?.category.label}</Tag>
               </Box>
               <Box mb={7}>
                 <Heading
@@ -125,8 +127,8 @@ const Project = () => {
                   Created By
                 </Heading>
                 <Avatar
-                  name={document?.createdBy.displayName}
-                  src={document?.createdBy.photoURL}
+                  name={project?.createdBy.displayName}
+                  src={project?.createdBy.photoURL}
                 />
               </Box>
             </CardBody>
