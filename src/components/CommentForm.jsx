@@ -21,11 +21,12 @@ const CommentForm = () => {
 
   return (
     <Box
+      rounded='md'
       onSubmit={submitHandler}
       as='form'
       py='8'
       px='4'
-      bg={'whiteAlpha.700'}>
+      bg={'whiteAlpha.900'}>
       <Flex
         align='center'
         mb={4}>

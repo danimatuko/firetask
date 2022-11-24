@@ -61,13 +61,13 @@ const Project = () => {
               <Text>{document?.details}</Text>
             </CardBody>
           </Card>
-          <Heading>Comments</Heading>
+          <Heading mb={4}>Comments</Heading>
           <CommentForm />
         </GridItem>
         <GridItem>
-          <Card bg='whiteAlpha.700'>
+          <Card bg='whiteAlpha.600'>
             <CardBody>
-              <Box mb={5}>
+              <Box mb={7}>
                 <Heading
                   size={'sm'}
                   mb={2}>
@@ -81,7 +81,7 @@ const Project = () => {
                   options={statusOptions}
                 />
               </Box>
-              <Box mb={5}>
+              <Box mb={7}>
                 <Heading
                   size={'sm'}
                   mb={2}>
@@ -92,7 +92,7 @@ const Project = () => {
                   mb={2}></Heading>
                 {document?.dueDate.toDate().toDateString()}
               </Box>
-              <Box mb={5}>
+              <Box mb={7}>
                 <Heading
                   size={'sm'}
                   mb={2}>
@@ -110,7 +110,7 @@ const Project = () => {
                   ))}
                 </AvatarGroup>
               </Box>
-              <Box mb={5}>
+              <Box mb={7}>
                 <Heading
                   size={'sm'}
                   mb={2}>
@@ -118,7 +118,7 @@ const Project = () => {
                 </Heading>
                 <Tag colorScheme={'messenger'}>{document?.category.label}</Tag>
               </Box>
-              <Box mb={5}>
+              <Box mb={7}>
                 <Heading
                   size={'sm'}
                   mb={2}>
