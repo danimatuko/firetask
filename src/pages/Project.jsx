@@ -17,12 +17,12 @@ import {
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import ReactSelect from 'react-select';
+import CommentForm from '../components/CommentForm';
 import useDocumnet from '../hooks/useDocumnet';
 
 const Project = () => {
   let { id } = useParams();
   const { document, error, isPending } = useDocumnet('projects', id);
-  console.log(document);
 
   const [status, setStatus] = useState();
 
@@ -50,7 +50,9 @@ const Project = () => {
         gap={8}
         templateColumns='repeat(3, 1fr)'>
         <GridItem colSpan={2}>
-          <Card bg='whiteAlpha.700'>
+          <Card
+            bg='whiteAlpha.700'
+            mb={16}>
             <CardHeader>
               <Heading size='lg'> {document?.name}</Heading>
             </CardHeader>
@@ -59,6 +61,8 @@ const Project = () => {
               <Text>{document?.details}</Text>
             </CardBody>
           </Card>
+          <Heading>Comments</Heading>
+          <CommentForm />
         </GridItem>
         <GridItem>
           <Card bg='whiteAlpha.700'>
