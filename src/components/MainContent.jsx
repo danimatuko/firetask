@@ -7,7 +7,7 @@ const mainContent = () => {
     <Box
       bg='light'
       as='main'
-      p='4'
+      p='16'
       w={{ base: 'full', md: '8xl' }}
       margin='auto'>
       <Box

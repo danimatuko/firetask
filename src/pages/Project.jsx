@@ -18,6 +18,7 @@ import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import ReactSelect from 'react-select';
 import CommentForm from '../components/CommentForm';
+import CommentList from '../components/CommentList';
 import useDocumnet from '../hooks/useDocumnet';
 
 const Project = () => {
@@ -60,14 +61,14 @@ const Project = () => {
               <Text>{project?.details}</Text>
             </CardBody>
           </Card>
-          <Heading mb={4}>Comments</Heading>
           <CommentForm
             projectId={id}
             project={project}
           />
+          <CommentList comments={project?.comments} />
         </GridItem>
         <GridItem>
-          <Card bg='whiteAlpha.600'>
+          <Card bg='whiteAlpha.700'>
             <CardBody>
               <Box mb={7}>
                 <Heading

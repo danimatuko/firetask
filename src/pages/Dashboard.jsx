@@ -23,8 +23,7 @@ export default function Dashboard() {
     <Box
       as='section'
       bg='gray.50'
-      _dark={{ bg: 'gray.700' }}
-      minH='100vh'>
+      _dark={{ bg: 'gray.700' }}>
       {success && <CustomToast message={'New Project created '} />}
       <Box
         // ml={{ base: 0, md: 60 }}
@@ -38,9 +37,7 @@ export default function Dashboard() {
           p='4'
           w={{ base: 'full', md: '8xl' }}
           margin='auto'>
-          <Box
-            rounded='md'
-            h='90vh'>
+          <Box rounded='md'>
             <MainContent />
           </Box>
         </Box>

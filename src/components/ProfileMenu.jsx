@@ -1,18 +1,18 @@
-import React from "react";
-import { Menu, MenuButton, MenuList, MenuItem, Avatar } from "@chakra-ui/react";
-import { NavLink } from "react-router-dom";
-import { useLogout } from "../hooks/useLogout";
-import { useAuthContext } from "../hooks/useAuthContext";
-import UserAvatar from "./UserAvatar";
+import React from 'react';
+import { Menu, MenuButton, MenuList, MenuItem, Avatar } from '@chakra-ui/react';
+import { NavLink } from 'react-router-dom';
+import { useLogout } from '../hooks/useLogout';
+import { useAuthContext } from '../hooks/useAuthContext';
+import UserAvatar from './UserAvatar';
 
 const data = [
   {
-    title: "Login",
-    path: "/login",
+    title: 'Login',
+    path: '/login',
   },
   {
-    title: "Signup",
-    path: "/signup",
+    title: 'Signup',
+    path: '/signup',
   },
 ];
 

@@ -19,7 +19,7 @@ const OnlineUsers = (props) => {
     <Box
       as='nav'
       pos='fixed'
-      top='16'
+      top='0'
       right='0'
       h='full'
       pb='10'
