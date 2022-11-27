@@ -3,6 +3,7 @@ import {
   Avatar,
   AvatarGroup,
   Box,
+  Button,
   Card,
   CardBody,
   CardHeader,
@@ -15,15 +16,23 @@ import {
   Text,
 } from '@chakra-ui/react';
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import ReactSelect from 'react-select';
 import CommentForm from '../components/CommentForm';
 import CommentList from '../components/CommentList';
 import { useDocument } from '../hooks/useDocumnet';
+import { useFirestore } from '../hooks/useFirestore';
 
 const Project = () => {
   const { id } = useParams();
   const { document: project, error, isPending } = useDocument('projects', id);
+  const { deleteDocument } = useFirestore('projects');
+  const navigate = useNavigate();
+
+  const removeProject = () => {
+    deleteDocument(id);
+    navigate('/');
+  };
 
   const statusOptions = [
     { value: 'todo', label: 'Todo' },
@@ -130,6 +139,15 @@ const Project = () => {
                   name={project?.createdBy.displayName}
                   src={project?.createdBy.photoURL}
                 />
+              </Box>{' '}
+              <Box mb={7}>
+                <Button
+                  size='sm'
+                  variant='outline'
+                  colorScheme='red'
+                  onClick={removeProject}>
+                  Remove Project
+                </Button>
               </Box>
             </CardBody>
           </Card>
