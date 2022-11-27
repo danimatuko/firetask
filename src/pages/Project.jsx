@@ -15,11 +15,12 @@ import {
   Tag,
   Text,
 } from '@chakra-ui/react';
-import React from 'react';
+import React, { useContext } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import ReactSelect from 'react-select';
 import CommentForm from '../components/CommentForm';
 import CommentList from '../components/CommentList';
+import { AuthContext } from '../context/AuthContext';
 import { useDocument } from '../hooks/useDocumnet';
 import { useFirestore } from '../hooks/useFirestore';
 
@@ -27,6 +28,7 @@ const Project = () => {
   const { id } = useParams();
   const { document: project, error, isPending } = useDocument('projects', id);
   const { deleteDocument } = useFirestore('projects');
+  const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const removeProject = () => {
@@ -139,16 +141,19 @@ const Project = () => {
                   name={project?.createdBy.displayName}
                   src={project?.createdBy.photoURL}
                 />
-              </Box>{' '}
-              <Box mb={7}>
-                <Button
-                  size='sm'
-                  variant='outline'
-                  colorScheme='red'
-                  onClick={removeProject}>
-                  Remove Project
-                </Button>
               </Box>
+              {user.uid === project?.createdBy.id && (
+                <Box mb={7}>
+                  {user.id}
+                  <Button
+                    size='sm'
+                    variant='outline'
+                    colorScheme='red'
+                    onClick={removeProject}>
+                    Remove Project
+                  </Button>
+                </Box>
+              )}
             </CardBody>
           </Card>
         </GridItem>
