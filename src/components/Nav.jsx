@@ -13,6 +13,7 @@ const Nav = (props) => {
       as='header'
       align='center'
       justify='space-between'
+      top={0}
       pos={'fixed'}
       zIndex={2}
       w='full'
