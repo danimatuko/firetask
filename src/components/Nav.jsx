@@ -28,7 +28,9 @@ const Nav = (props) => {
         icon={<FiMenu />}
         size='sm'
       />
-      <Container maxW={'container.xl'}>
+      <Container
+        maxW={'container.2xl'}
+        pl='60'>
         <Flex justifyContent={'space-between'}>
           <Search />
           <Flex align='center'>
