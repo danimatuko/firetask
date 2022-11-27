@@ -55,7 +55,9 @@ const Project = () => {
   return (
     <Container
       maxWidth={'container.xl'}
-      py='16'>
+      // pb='16'
+      // pt={32}>
+    >
       <Grid
         gap={8}
         templateColumns='repeat(3, 1fr)'>

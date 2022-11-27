@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState } from 'react';
 import {
   Container,
   FormControl,
@@ -14,16 +14,16 @@ import {
   InputRightElement,
   Checkbox,
   Link,
-} from "@chakra-ui/react";
-import { useSignup } from "../hooks/useSignup";
-import AlertMessage from "../components/AlertMessage";
+} from '@chakra-ui/react';
+import { useSignup } from '../hooks/useSignup';
+import AlertMessage from '../components/AlertMessage';
 
 const Signup = () => {
   const [show, setShow] = useState(false);
   const [profileImg, setProfileImg] = useState(null);
-  const [displayName, setDisplayName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [displayName, setDisplayName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const { signup, error, isPending } = useSignup();
 
   const handleClick = () => setShow(!show);
@@ -42,30 +42,30 @@ const Signup = () => {
   return (
     <Container
       maxW='7xl'
-      mt={28}
+      mt={16}
       p={{ base: 5, md: 10 }}>
       <Center>
         <Stack spacing={4}>
-          <Stack align='center'>
-            {error && (
-              <AlertMessage
-                status='error'
-                message={error}
-              />
-            )}
-            <Heading fontSize='3xl'>Sign in to your account</Heading>
-          </Stack>
           <VStack
             onSubmit={handleSubmit}
             as='form'
             noValidate
-            boxSize={{ base: "xs", sm: "sm", md: "md" }}
+            boxSize={{ base: 'xs', sm: 'sm', md: 'md' }}
             h='max-content !important'
-            bg={useColorModeValue("white", "gray.700")}
+            bg={useColorModeValue('white', 'gray.700')}
             rounded='lg'
             boxShadow='lg'
             p={{ base: 5, sm: 10 }}
             spacing={8}>
+            <Stack align='center'>
+              {error && (
+                <AlertMessage
+                  status='error'
+                  message={error}
+                />
+              )}
+              <Heading fontSize='3xl'>Sign in to your account</Heading>
+            </Stack>
             <VStack
               spacing={4}
               w='100%'>
@@ -82,7 +82,7 @@ const Signup = () => {
                 <InputGroup size='md'>
                   <Input
                     rounded='md'
-                    type={show ? "text" : "password"}
+                    type={show ? 'text' : 'password'}
                     onChange={(e) => setPassword(e.target.value)}
                   />
                   <InputRightElement width='4.5rem'>
@@ -90,12 +90,12 @@ const Signup = () => {
                       h='1.75rem'
                       size='sm'
                       rounded='md'
-                      bg={useColorModeValue("gray.300", "gray.700")}
+                      bg={useColorModeValue('gray.300', 'gray.700')}
                       _hover={{
-                        bg: useColorModeValue("gray.400", "gray.800"),
+                        bg: useColorModeValue('gray.400', 'gray.800'),
                       }}
                       onClick={handleClick}>
-                      {show ? "Hide" : "Show"}
+                      {show ? 'Hide' : 'Show'}
                     </Button>
                   </InputRightElement>
                 </InputGroup>
@@ -128,7 +128,7 @@ const Signup = () => {
                   size='md'>
                   Remember me
                 </Checkbox>
-                <Link fontSize={{ base: "md", sm: "md" }}>
+                <Link fontSize={{ base: 'md', sm: 'md' }}>
                   Forgot password?
                 </Link>
               </Stack>
@@ -140,7 +140,7 @@ const Signup = () => {
                 bg='brand.300'
                 color='white'
                 _hover={{
-                  bg: "brand.500",
+                  bg: 'brand.500',
                 }}
                 rounded='md'
                 w='100%'>

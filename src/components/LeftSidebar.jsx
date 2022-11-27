@@ -4,7 +4,6 @@ import React from 'react';
 import { AiFillFire } from 'react-icons/ai';
 import { NavLink } from 'react-router-dom';
 import { leftSidebarData } from '../../data/leftSidebar';
-import Logo from '../assets/react.svg';
 import NavItem from './NavItem';
 
 const LeftSidebar = (props) => {
@@ -53,11 +52,8 @@ const LeftSidebar = (props) => {
             key={navItem.title}
             as={NavLink}
             to={navItem.path}
-            fontSize='lg'>
-            <Icon
-              as={navItem.icon}
-              fontSize='lg'
-            />
+            fontSize='md'>
+            <Icon as={navItem.icon} />
             <Text ml={1}>{navItem.title}</Text>
           </NavItem>
         ))}

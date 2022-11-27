@@ -26,10 +26,10 @@ export default function Dashboard() {
       _dark={{ bg: 'gray.700' }}>
       {success && <CustomToast message={'New Project created '} />}
       <Box
-        // ml={{ base: 0, md: 60 }}
-        // w='75%'
-        // w={{ base: "full", md: "8xl" }}
-        // margin={"auto"}
+        ml={{ base: 0, md: 60 }}
+        w='75%'
+        // w={{ base: 'full', md: '8xl' }}
+        margin={'auto'}
         transition='.3s ease'>
         <Box
           bg='light'
@@ -38,7 +38,18 @@ export default function Dashboard() {
           w={{ base: 'full', md: '8xl' }}
           margin='auto'>
           <Box rounded='md'>
-            <MainContent />
+            <Box
+              bg='light'
+              as='main'
+              px='16'
+              w={{ base: 'full', md: '8xl' }}
+              margin='auto'>
+              <Box
+                rounded='md'
+                h='90vh'>
+                <ProjectList />
+              </Box>
+            </Box>{' '}
           </Box>
         </Box>
       </Box>
