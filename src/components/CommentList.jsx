@@ -1,8 +1,10 @@
 import { Box } from '@chakra-ui/react';
-import React from 'react';
+import React, { useEffect } from 'react';
 import Comment from './Comment';
 
 const CommentList = ({ comments }) => {
+  useEffect(() => {}, [comments]);
+
   return (
     <Box>
       {comments?.map((comment) => (

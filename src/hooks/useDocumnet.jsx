@@ -1,26 +1,33 @@
 import { useEffect, useState } from 'react';
 import { firestore } from '../firebase/config';
 
-const useDocumnet = (collection, id) => {
+export const useDocument = (collection, id) => {
   const [document, setDocument] = useState(null);
   const [error, setError] = useState(null);
-  const [isPending, setIsPending] = useState(false);
 
+  // realtime document data
   useEffect(() => {
-    setIsPending(true);
-    firestore
-      .collection(collection)
-      .doc(id)
-      .get()
-      .then((doc) => {
-        if (!doc.data()) throw Error('Document does not exist');
-        setDocument(doc.data());
-      })
-      .catch((error) => setError(error.message))
-      .finally(() => setIsPending(false));
+    const ref = firestore.collection(collection).doc(id);
+
+    const unsubscribe = ref.onSnapshot(
+      (snapshot) => {
+        // need to make sure the doc exists & has data
+        if (snapshot.data()) {
+          setDocument({ ...snapshot.data(), id: snapshot.id });
+          setError(null);
+        } else {
+          setError('No such document exists');
+        }
+      },
+      (err) => {
+        console.log(err.message);
+        setError('failed to get document');
+      }
+    );
+
+    // unsubscribe on unmount
+    return () => unsubscribe();
   }, [collection, id]);
 
-  return { document, error, isPending };
+  return { document, error };
 };
-
-export default useDocumnet;

@@ -14,17 +14,16 @@ import {
   Tag,
   Text,
 } from '@chakra-ui/react';
-import React, { useState } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
 import ReactSelect from 'react-select';
 import CommentForm from '../components/CommentForm';
 import CommentList from '../components/CommentList';
-import useDocumnet from '../hooks/useDocumnet';
+import { useDocument } from '../hooks/useDocumnet';
 
 const Project = () => {
   const { id } = useParams();
-  const { document: project, error, isPending } = useDocumnet('projects', id);
-  const [status, setStatus] = useState();
+  const { document: project, error, isPending } = useDocument('projects', id);
 
   const statusOptions = [
     { value: 'todo', label: 'Todo' },

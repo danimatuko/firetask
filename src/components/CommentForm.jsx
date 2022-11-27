@@ -20,7 +20,7 @@ const CommentForm = ({ projectId, project }) => {
   const { updateDocument } = useFirestore('projects');
   const [message, setMessage] = useState('');
 
-  const submitHandler = async (e) => {
+  const submitHandler = (e) => {
     e.preventDefault();
     const newComment = {
       id: uuidv4(),
@@ -30,8 +30,8 @@ const CommentForm = ({ projectId, project }) => {
       createdAt: new Date(),
     };
 
-    await updateDocument(projectId, {
-      comments: [...project.comments, newComment],
+    updateDocument(projectId, {
+      comments: [...project?.comments, newComment],
     });
   };
 

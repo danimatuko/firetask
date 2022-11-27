@@ -1,5 +1,4 @@
-import { useReducer, useEffect, useState, createContext } from 'react';
-import { firestore, timestamp } from '../firebase/config';
+import { useReducer, createContext } from 'react';
 
 export const FirestoreContext = createContext();
 
