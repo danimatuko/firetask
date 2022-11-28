@@ -8,7 +8,7 @@ const ProjectList = () => {
   if (isPending) return <p>Waiting</p>;
 
   return (
-    <Container maxWidth={'container.4xl'}>
+    <Container maxWidth={'container.xl'}>
       {error && <p>{error}</p>}
       <Grid
         templateColumns='repeat(3, 1fr)'

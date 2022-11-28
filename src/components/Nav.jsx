@@ -23,7 +23,7 @@ const Nav = (props) => {
       h='16'>
       <IconButton
         aria-label='Menu'
-        display={{ base: 'inline-flex', md: 'none' }}
+        display={{ base: 'inline-flex', xl: 'none' }}
         onClick={sidebar.onOpen}
         icon={<FiMenu />}
         size='sm'

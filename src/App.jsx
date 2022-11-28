@@ -24,7 +24,7 @@ function App() {
   return (
     <div className='App'>
       <Nav sidebar={sidebar} />
-      <LeftSidebar display={{ base: 'none', md: 'unset' }} />
+      <LeftSidebar display={{ base: 'none', xl: 'unset' }} />
       <Drawer
         isOpen={sidebar.isOpen}
         onClose={sidebar.onClose}
@@ -63,7 +63,7 @@ function App() {
           </Routes>
         )}
       </Box>
-      <OnlineUsers display={{ base: 'none', md: 'unset' }} />
+      <OnlineUsers display={{ base: 'none', xl: 'unset' }} />
       <Drawer
         isOpen={sidebar.isOpen}
         onClose={sidebar.onClose}
