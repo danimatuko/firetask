@@ -7,7 +7,7 @@ import {
   useDisclosure,
 } from '@chakra-ui/react';
 
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 
 import { FirestoreContext } from '../context/FireStoreContext';
 import CustomToast from '../components/CustomToast';
@@ -17,7 +17,9 @@ import Filters from '../components/Filters';
 export default function Dashboard() {
   const sidebar = useDisclosure();
   const { document, isPending, error, success } = useContext(FirestoreContext);
+  const [filter, setFilter] = useState('all');
 
+  const changeFilter = () => {};
   return (
     <Container
       maxW={'container.xl'}
@@ -42,8 +44,11 @@ export default function Dashboard() {
               <Box
                 rounded='md'
                 h='90vh'>
-                <Filters />
-                <ProjectList />
+                <Filters
+                  filter={filter}
+                  setFilter={setFilter}
+                />
+                <ProjectList filterValue={filter} />
               </Box>
             </Box>{' '}
           </Box>

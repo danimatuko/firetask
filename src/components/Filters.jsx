@@ -1,5 +1,5 @@
 import { Button, Flex } from '@chakra-ui/react';
-import React, { useState } from 'react';
+import React from 'react';
 
 const filterOptions = [
   'all',
@@ -9,15 +9,17 @@ const filterOptions = [
   'marketing',
   'sales',
 ];
-const Filters = () => {
-  const [filter, setFilter] = useState('all');
+const Filters = ({ filter, setFilter }) => {
   return (
     <Flex mb='8'>
-      {filterOptions.map((filter) => (
+      {filterOptions.map((option) => (
         <Button
-          key={filter}
-          onClick={() => setFilter(filter)}>
-          {filter}
+          variant={'ghost'}
+          colorScheme={filter == option ? 'pink' : 'black'}
+          key={option}
+          textTransform='capitalize'
+          onClick={() => setFilter(option)}>
+          {option}
         </Button>
       ))}
     </Flex>
