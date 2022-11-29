@@ -19,10 +19,9 @@ export default function Dashboard() {
   const { document, isPending, error, success } = useContext(FirestoreContext);
   const [filter, setFilter] = useState('all');
 
-  const changeFilter = () => {};
   return (
     <Container
-      maxW={'container.xl'}
+      maxW={'container.2xl'}
       as='section'
       bg='gray.50'
       _dark={{ bg: 'gray.700' }}>

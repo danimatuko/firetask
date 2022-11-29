@@ -151,17 +151,8 @@ const Project = () => {
                   src={project?.createdBy.photoURL}
                 />
               </Box>
-              <Box mb={7}>
-                {user.id}
-                <Button
-                  size='sm'
-                  variant='outline'
-                  colorScheme='red'
-                  onClick={removeProject}>
-                  Remove Project
-                </Button>
-              </Box>
-              {/* {user.uid === project?.createdBy.id && (
+
+              {user.uid === project?.createdBy.id && (
                 <Box mb={7}>
                   {user.id}
                   <Button
@@ -172,7 +163,7 @@ const Project = () => {
                     Remove Project
                   </Button>
                 </Box>
-              )} */}
+              )}
             </CardBody>
           </Card>
         </GridItem>

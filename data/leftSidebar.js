@@ -1,26 +1,26 @@
-import { FaClipboardCheck } from "react-icons/fa";
+import { FaClipboardCheck } from 'react-icons/fa';
 
-import { GoPlus } from "react-icons/go";
-import { MdSettings } from "react-icons/md";
+import { GoPlus } from 'react-icons/go';
+import { MdSettings } from 'react-icons/md';
 
 export const leftSidebarData = [
   {
-    title: "Home",
+    title: 'Home',
     icon: MdSettings,
-    path: "/",
+    path: '/',
   },
   {
-    title: "New Project",
+    title: 'New Project',
     icon: GoPlus,
-    path: "/create",
+    path: '/create',
   },
-  {
-    title: "Checklists",
-    icon: FaClipboardCheck,
-  },
+  // {
+  //   title: "Checklists",
+  //   icon: FaClipboardCheck,
+  // },
 
-  {
-    title: "Settings",
-    icon: MdSettings,
-  },
+  // {
+  //   title: "Settings",
+  //   icon: MdSettings,
+  // },
 ];

@@ -1,4 +1,4 @@
-import { Button, Flex } from '@chakra-ui/react';
+import { Button, Container, Flex } from '@chakra-ui/react';
 import React from 'react';
 
 const filterOptions = [
@@ -11,18 +11,22 @@ const filterOptions = [
 ];
 const Filters = ({ filter, setFilter }) => {
   return (
-    <Flex mb='8'>
-      {filterOptions.map((option) => (
-        <Button
-          variant={'ghost'}
-          colorScheme={filter == option ? 'pink' : 'black'}
-          key={option}
-          textTransform='capitalize'
-          onClick={() => setFilter(option)}>
-          {option}
-        </Button>
-      ))}
-    </Flex>
+    <Container maxW={'container.xl'}>
+      <Flex
+        justifyContent='start'
+        mb='8'>
+        {filterOptions.map((option) => (
+          <Button
+            variant={'ghost'}
+            colorScheme={filter == option ? 'pink' : 'black'}
+            key={option}
+            textTransform='capitalize'
+            onClick={() => setFilter(option)}>
+            {option}
+          </Button>
+        ))}
+      </Flex>
+    </Container>
   );
 };
 
