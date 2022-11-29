@@ -16,7 +16,6 @@ import { FirestoreContext } from '../context/FireStoreContext';
 
 const CommentForm = ({ projectId, project }) => {
   const { user } = useContext(AuthContext);
-  const { error } = useContext(FirestoreContext);
   const { updateDocument } = useFirestore('projects');
   const [message, setMessage] = useState('');
 
@@ -46,8 +45,6 @@ const CommentForm = ({ projectId, project }) => {
         py='8'
         px='4'
         bg='whiteAlpha.700'>
-        {error && <Alert>{error}</Alert>}
-
         <Flex
           align='center'
           mb={4}>

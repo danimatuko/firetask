@@ -24,13 +24,11 @@ const ProjectList = ({ filterValue }) => {
     switch (filterValue) {
       case 'mine':
         return project?.assignedUsersList.find((u) => u.id == user.uid);
-
       case 'development':
       case 'sales':
       case 'marketing':
       case 'design':
         return project.category.value === filterValue;
-
       default:
         return projects;
     }

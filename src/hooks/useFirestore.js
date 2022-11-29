@@ -53,7 +53,7 @@ export const useFirestore = (collection) => {
     }
   };
 
-  const reset = () => setTimeout(() => dispatch({ type: 'RESET' }), 3000);
+  const reset = () => setTimeout(() => dispatch({ type: 'RESET' }), 5000);
 
   return { addDocument, deleteDocument, updateDocument, reset, state };
 };

@@ -1,5 +1,7 @@
 import {
   Alert,
+  AlertDescription,
+  AlertIcon,
   Avatar,
   AvatarGroup,
   Box,
@@ -15,26 +17,31 @@ import {
   Tag,
   Text,
 } from '@chakra-ui/react';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import ReactSelect from 'react-select';
 import CommentForm from '../components/CommentForm';
 import CommentList from '../components/CommentList';
 import { AuthContext } from '../context/AuthContext';
+import { FirestoreContext } from '../context/FireStoreContext';
 import { useDocument } from '../hooks/useDocumnet';
 import { useFirestore } from '../hooks/useFirestore';
 
 const Project = () => {
   const { id } = useParams();
-  const { document: project, error, isPending } = useDocument('projects', id);
-  const { deleteDocument } = useFirestore('projects');
+  const { document: project, isPending } = useDocument('projects', id);
+  const { deleteDocument, reset } = useFirestore('projects');
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
+  const { error, success } = useContext(FirestoreContext);
 
-  const removeProject = () => {
+  const removeProject = async () => {
     deleteDocument(id);
-    navigate('/');
+    reset();
   };
+  useEffect(() => {
+    success && navigate('/');
+  }, [success]);
 
   const statusOptions = [
     { value: 'todo', label: 'Todo' },
@@ -44,20 +51,20 @@ const Project = () => {
 
   if (isPending) return <Spinner />;
 
-  if (error)
-    return (
-      <Alert status='error'>
-        <AlertIcon />
-        <AlertDescription>{error}</AlertDescription>
-      </Alert>
-    );
-
   return (
     <Container
       maxWidth={'container.xl'}
       // pb='16'
       // pt={32}>
     >
+      {error && (
+        <Alert
+          status='error'
+          mb={4}>
+          <AlertIcon />
+          <AlertDescription>{error}</AlertDescription>
+        </Alert>
+      )}
       <Grid
         gap={8}
         templateColumns='repeat(3, 1fr)'>
@@ -144,7 +151,17 @@ const Project = () => {
                   src={project?.createdBy.photoURL}
                 />
               </Box>
-              {user.uid === project?.createdBy.id && (
+              <Box mb={7}>
+                {user.id}
+                <Button
+                  size='sm'
+                  variant='outline'
+                  colorScheme='red'
+                  onClick={removeProject}>
+                  Remove Project
+                </Button>
+              </Box>
+              {/* {user.uid === project?.createdBy.id && (
                 <Box mb={7}>
                   {user.id}
                   <Button
@@ -155,7 +172,7 @@ const Project = () => {
                     Remove Project
                   </Button>
                 </Box>
-              )}
+              )} */}
             </CardBody>
           </Card>
         </GridItem>
