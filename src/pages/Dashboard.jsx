@@ -25,7 +25,7 @@ export default function Dashboard() {
       as='section'
       bg='gray.50'
       _dark={{ bg: 'gray.700' }}>
-      {success && <CustomToast message={'New Project created '} />}
+      {/* {success && <CustomToast message={'New Project created '} />} */}
       <Box
         // ml={{ base: 0, md: 60 }}
         // w={{ base: 'full', md: '8xl' }}
