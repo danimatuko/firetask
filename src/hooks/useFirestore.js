@@ -1,10 +1,12 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { json } from 'react-router-dom';
 import { FirestoreContext } from '../context/FireStoreContext';
 import { firestore, timestamp } from '../firebase/config';
 
 export const useFirestore = (collection) => {
   const { state, dispatch } = useContext(FirestoreContext);
+  const [document, setDocument] = useState(null);
+  const [error, setError] = useState(null);
 
   // collection ref
   const ref = firestore.collection(collection);
